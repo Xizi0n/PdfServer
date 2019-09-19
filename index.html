@@ -1,0 +1,26 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" id="pdf" name="pdf" />
+    <button id="upload">Upload</button>
+    <script>
+      const buttonPDF = document.getElementById("pdf");
+
+      buttonPDF.addEventListener("click", () => {
+        const value = document.getElementById("pdf").files[0];
+        console.log(value);
+        const formData = new FormData();
+        formData.append("pdf", value);
+
+        const request = new XMLHttpRequest();
+        request.open("POST", "http://localhost:4003/uploadPdf");
+        request.send(formData);
+      });
+    </script>
+  </body>
+</html>
